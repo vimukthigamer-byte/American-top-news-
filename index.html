@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="The Divide — American news, controversial topics, and different perspectives.">
+<title>The Divide | American News & Perspectives</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --navy:#000080;
+  --white:#fff;
+  --black:#000;
+  --gray:#666;
+  --light:#f5f5f5;
+  --line:#dedede;
+  --max:1440px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--navy);
+  color:var(--black);
+  font-family:"DM Sans",Arial,sans-serif;
+  line-height:1.55;
+}
+a{text-decoration:none;color:inherit}
+img{display:block;max-width:100%}
+
+/* NAVIGATION */
+.site-header{
+  position:sticky;
+  top:0;
+  z-index:100;
+  background:var(--navy);
+  color:var(--white);
+  border-bottom:1px solid rgba(255,255,255,.18);
+}
+.nav{
+  max-width:var(--max);
+  min-height:88px;
+  margin:auto;
+  padding:20px 42px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:30px;
+}
+.logo{
+  font-family:"Playfair Display",Georgia,serif;
+  font-size:2.25rem;
+  font-weight:600;
+  line-height:1;
+  position:relative;
+  padding-bottom:10px;
+}
+.logo:after{
+  content:"";
+  position:absolute;
+  left:0;
+  bottom:0;
+  width:58px;
+  height:2px;
+  background:#fff;
+}
+.nav-links{
+  display:flex;
+  gap:28px;
+  align-items:center;
+  flex-wrap:wrap;
+  justify-content:flex-end;
+}
+.nav-links a{
+  font-family:"Playfair Display",Georgia,serif;
+  font-size:1.05rem;
+  transition:opacity .2s;
+}
+.nav-links a:hover{opacity:.65}
+
+/* GENERAL */
+.section{
+  scroll-margin-top:90px;
+}
+.inner{
+  max-width:var(--max);
+  margin:auto;
+  padding:70px 42px;
+}
+.white-section{
+  background:var(--light);
+  color:var(--black);
+}
+.section-title{
+  font-family:"Playfair Display",Georgia,serif;
+  font-size:clamp(2.6rem,5vw,4.8rem);
+  line-height:1;
+  letter-spacing:-.04em;
+  margin-bottom:12px;
+}
+.section-subtitle{
+  color:#444;
+  font-size:1.05rem;
+  max-width:720px;
+}
+.eyebrow{
+  color:var(--navy);
+  text-transform:uppercase;
+  letter-spacing:.16em;
+  font-size:.75rem;
+  font-weight:700;
+  margin-bottom:12px;
+}
+.section-head{
+  display:flex;
+  align-items:end;
+  justify-content:space-between;
+  gap:25px;
+  margin-bottom:30px;
+}
+
+/* HOME */
+#home{
+  min-height:calc(100vh - 88px);
+  color:var(--white);
+  display:flex;
+  align-items:center;
+}
+.home-inner{
+  width:100%;
+  max-width:var(--max);
+  margin:auto;
+  padding:75px 42px 90px;
+  text-align:center;
+}
+.home-inner h1{
+  font-family:"Playfair Display",Georgia,serif;
+  font-size:clamp(3.5rem,6.4vw,6rem);
+  line-height:.98;
+  letter-spacing:-.045em;
+  margin-bottom:22px;
+}
+.home-inner > p{
+  max-width:720px;
+  margin:0 auto 45px;
+  font-size:1.22rem;
+  color:rgba(255,255,255,.9);
+}
+.category-grid{
+  display:grid;
+  grid-template-columns:repeat(6,1fr);
+  gap:24px;
+  text-align:left;
+}
+.category-card{
+  min-height:300px;
+  background:#fff;
+  color:#000;
+  border-radius:9px;
+  overflow:hidden;
+  position:relative;
+  isolation:isolate;
+  padding:30px;
+  display:flex;
+  flex-direction:column;
+  transition:transform .25s,box-shadow .25s;
+}
+.category-card:hover{
+  transform:translateY(-5px);
+  box-shadow:0 18px 35px rgba(0,0,0,.22);
+}
+.category-card:nth-child(-n+3){grid-column:span 2}
+.category-card:nth-child(n+4){grid-column:span 3}
+.category-card img{
+  position:absolute;
+  inset:0 0 0 auto;
+  width:72%;
+  height:100%;
+  object-fit:cover;
+  z-index:-2;
+  opacity:.82;
+  -webkit-mask-image:linear-gradient(to right,transparent 0%,rgba(0,0,0,.25) 18%,#000 55%);
+  mask-image:linear-gradient(to right,transparent 0%,rgba(0,0,0,.25) 18%,#000 55%);
+}
+.category-card:after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(90deg,#fff 0%,rgba(255,255,255,.97) 34%,rgba(255,255,255,.35) 72%,rgba(255,255,255,0) 100%);
+  z-index:-1;
+}
+.category-card h2{
+  font-family:"Playfair Display",Georgia,serif;
+  font-size:2.4rem;
+  line-height:1.05;
+  max-width:90%;
+}
+.rule{
+  width:64px;
+  height:2px;
+  background:#000;
+  margin:18px 0 15px;
+}
+.category-card p{
+  max-width:245px;
+  font-size:1.05rem;
+}
+.explore{
+  margin-top:auto;
+  padding-top:20px;
+  font-weight:700;
+  letter-spacing:.14em;
+  font-size:.78rem;
+}
+.explore span{font-size:1.25rem;margin-left:7px;letter-spacing:0}
+
+/* NEWS PAGES */
+.news-layout{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) 320px;
+  gap:26px;
+  align-items:start;
+}
+.top-grid{
+  display:grid;
+  grid-template-columns:1.45fr 1fr;
+  gap:18px;
+  margin-bottom:24px;
+}
+.news-card,.side-card,.news-item{
+  background:#fff;
+  border:1px solid var(--line);
+}
+.news-card{
+  padding:28px;
+}
+.news-card.featured{
+  min-height:330px;
+  border-top:5px solid var(--navy);
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-end;
+}
+.news-card.small{
+  min-height:156px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+}
+.tag{
+  color:var(--navy);
+  font-size:.7rem;
+  font-weight:700;
+  letter-spacing:.13em;
+  text-transform:uppercase;
+  margin-bottom:10px;
+}
+.news-card h3,.news-item h3{
+  font-family:"Playfair Display",Georgia,serif;
+  line-height:1.15;
+  margin-bottom:9px;
+}
+.news-card h3{font-size:2rem}
+.news-card.small h3{font-size:1.35rem}
+.summary{color:#444;margin-bottom:15px}
+.meta{color:#777;font-size:.75rem;display:flex;gap:9px;flex-wrap:wrap}
+.read{
+  color:var(--navy);
+  font-size:.75rem;
+  font-weight:700;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  margin-top:15px;
+}
+.filter{
+  display:flex;
+  gap:7px;
+  flex-wrap:wrap;
+  padding:13px;
+  background:#fff;
+  border:1px solid var(--line);
+  margin-bottom:14px;
+}
+.filter button{
+  border:1px solid #ccc;
+  background:#fff;
+  color:#000;
+  padding:8px 12px;
+  cursor:pointer;
+  font:inherit;
+  font-size:.72rem;
+  font-weight:700;
+}
+.filter button:hover,.filter button.active{
+  background:var(--navy);
+  border-color:var(--navy);
+  color:#fff;
+}
+.news-list{display:grid;gap:11px}
+.news-item{
+  padding:22px;
+  display:grid;
+  grid-template-columns:1fr 42px;
+  gap:20px;
+}
+.news-item h3{font-size:1.35rem}
+.news-arrow{
+  width:42px;
+  height:42px;
+  border:1px solid var(--navy);
+  color:var(--navy);
+  display:grid;
+  place-items:center;
+  align-self:center;
+}
+.news-item.hidden{display:none}
+.sidebar{
+  display:grid;
+  gap:18px;
+  position:sticky;
+  top:110px;
+}
+.side-card{padding:23px}
+.side-card h3{
+  font-family:"Playfair Display",Georgia,serif;
+  font-size:1.55rem;
+  margin-bottom:13px;
+}
+.trending{
+  list-style:none;
+  counter-reset:item;
+}
+.trending li{
+  counter-increment:item;
+  border-top:1px solid var(--line);
+  padding:13px 0 13px 35px;
+  position:relative;
+  font-size:.88rem;
+  font-weight:600;
+}
+.trending li:before{
+  content:counter(item,decimal-leading-zero);
+  position:absolute;
+  left:0;
+  top:14px;
+  color:var(--navy);
+  font-size:.7rem;
+}
+.debate{border-top:5px solid var(--navy)}
+.debate-question{
+  font-family:"Playfair Display",Georgia,serif;
+  font-size:1.4rem;
+  line-height:1.25;
+  margin-bottom:15px;
+}
+.perspectives{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:9px;
+}
+.perspective{
+  border:1px solid var(--line);
+  padding:12px;
+  font-size:.77rem;
+}
+.perspective b{
+  display:block;
+  color:var(--navy);
+  text-transform:uppercase;
+  font-size:.66rem;
+  letter-spacing:.08em;
+  margin-bottom:5px;
+}
+
+/* CATEGORY PAGE COLORS */
+.category-section .section-title{margin-bottom:5px}
+.category-section:nth-of-type(even){background:#fff}
+
+/* FOOTER */
+footer{
+  background:var(--navy);
+  color:#fff;
+}
+.footer-inner{
+  max-width:var(--max);
+  margin:auto;
+  padding:35px 42px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:20px;
+}
+.footer-inner p{font-size:.78rem;opacity:.82}
+
+/* RESPONSIVE */
+@media(max-width:1000px){
+  .nav{padding:20px 25px}
+  .nav-links{gap:16px}
+  .category-grid{grid-template-columns:repeat(2,1fr)}
+  .category-card:nth-child(n){grid-column:span 1}
+  .category-card:last-child{grid-column:span 2}
+  .news-layout{grid-template-columns:1fr}
+  .sidebar{position:static}
+}
+@media(max-width:680px){
+  .nav{align-items:flex-start;flex-direction:column}
+  .nav-links{width:100%;overflow-x:auto;flex-wrap:nowrap;padding-bottom:3px}
+  .inner{padding:50px 18px}
+  .home-inner{padding:55px 18px}
+  .home-inner h1{font-size:3.25rem}
+  .home-inner>p{font-size:1rem}
+  .category-grid{display:flex;flex-direction:column}
+  .category-card{min-height:285px}
+  .top-grid{grid-template-columns:1fr}
+  .news-item{grid-template-columns:1fr}
+  .news-arrow{display:none}
+  .footer-inner{padding:30px 18px;align-items:flex-start;flex-direction:column}
+}
+
+/* RICHER CATEGORY VISUALS */
+.category-hero{
+  display:grid;
+  grid-template-columns:1.15fr .85fr;
+  gap:24px;
+  margin-bottom:28px;
+  align-items:stretch;
+}
+.category-hero-copy{
+  background:#fff;
+  border:1px solid var(--line);
+  padding:34px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+}
+.category-hero-image{
+  min-height:310px;
+  border:1px solid var(--line);
+  overflow:hidden;
+  background:#fff;
+  position:relative;
+}
+.category-hero-image img{
+  width:100%;
+  height:100%;
+  min-height:310px;
+  object-fit:cover;
+}
+.category-hero-image:after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(90deg,rgba(255,255,255,.18),transparent 55%);
+  pointer-events:none;
+}
+.news-card.has-image{
+  padding:0;
+  overflow:hidden;
+  min-height:360px;
+  display:flex;
+  flex-direction:column;
+}
+.news-card.has-image .news-image{
+  width:100%;
+  height:175px;
+  object-fit:cover;
+}
+.news-card.has-image .news-content{
+  padding:23px 27px 27px;
+}
+.news-item.has-thumb{
+  grid-template-columns:120px 1fr 42px;
+  align-items:center;
+}
+.news-thumb{
+  width:120px;
+  height:90px;
+  object-fit:cover;
+}
+@media(max-width:1000px){
+  .category-hero{grid-template-columns:1fr}
+  .category-hero-image,.category-hero-image img{min-height:250px}
+}
+@media(max-width:680px){
+  .category-hero-copy{padding:25px}
+  .category-hero-image,.category-hero-image img{min-height:210px}
+  .news-item.has-thumb{grid-template-columns:90px 1fr}
+  .news-item.has-thumb .news-arrow{display:none}
+  .news-thumb{width:90px;height:75px}
+}
+
+</style>
+</head>
+
+<body>
+
+<header class="site-header">
+  <nav class="nav">
+    <a href="#home" class="logo">The Divide</a>
+    <div class="nav-links">
+      <a href="#home">Home</a>
+      <a href="#social">Social</a>
+      <a href="#economic">Economic</a>
+      <a href="#political">Political</a>
+      <a href="#ai">AI</a>
+      <a href="#fashion">Fashion</a>
+    </div>
+  </nav>
+</header>
+
+<!-- ================= HOME ================= -->
+<section id="home" class="section">
+  <div class="home-inner">
+    <h1>CHOOSE A CATEGORY</h1>
+    <p>Explore controversial topics and different perspectives<br>across society, technology, and beyond.</p>
+
+    <div class="category-grid">
+      <a class="category-card" href="#social">
+        <img src="social.png" alt="">
+        <h2>SOCIAL</h2><div class="rule"></div>
+        <p>People, culture, identity,<br>and social change.</p>
+        <div class="explore">EXPLORE <span>→</span></div>
+      </a>
+
+      <a class="category-card" href="#economic">
+        <img src="economic.png" alt="">
+        <h2>ECONOMIC</h2><div class="rule"></div>
+        <p>Money, business,<br>work and<br>inequality.</p>
+        <div class="explore">EXPLORE <span>→</span></div>
+      </a>
+
+      <a class="category-card" href="#political">
+        <img src="political.png" alt="">
+        <h2>POLITICAL</h2><div class="rule"></div>
+        <p>Government, policies,<br>power and democracy.</p>
+        <div class="explore">EXPLORE <span>→</span></div>
+      </a>
+
+      <a class="category-card" href="#ai">
+        <img src="ai.png" alt="">
+        <h2>AI &amp; TECHNOLOGY</h2><div class="rule"></div>
+        <p>Innovation, automation,<br>privacy and the future.</p>
+        <div class="explore">EXPLORE <span>→</span></div>
+      </a>
+
+      <a class="category-card" href="#fashion">
+        <img src="fashion.png" alt="">
+        <h2>FASHION &amp; CULTURE</h2><div class="rule"></div>
+        <p>Trends, identity,<br>beauty, consumerism<br>and culture.</p>
+        <div class="explore">EXPLORE <span>→</span></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SOCIAL ================= -->
+<section id="social" class="section white-section category-section">
+  <div class="inner">
+    <div class="section-head">
+      <div>
+        <div class="eyebrow">American Society</div>
+        <h2 class="section-title">Social</h2>
+        <p class="section-subtitle">The latest stories, debates, and changes shaping American society.</p>
+      </div>
+    </div>
+
+    <div class="top-grid">
+      <article class="news-card featured">
+        <div class="tag">Featured</div>
+        <h3>Headline for the most important social story</h3>
+        <p class="summary">Add a short, factual summary of the story here. Keep it concise and give readers enough context to decide whether they want to read the full article.</p>
+        <div class="meta"><span>Source Name</span><span>•</span><span>Today</span></div>
+        <a class="read" href="#">Read more →</a>
+      </article>
+      <div>
+        <article class="news-card small">
+          <div class="tag">Culture</div>
+          <h3>Another important social story</h3>
+          <div class="meta"><span>Source Name</span><span>•</span><span>Today</span></div>
+          <a class="read" href="#">Read more →</a>
+        </article>
+        <article class="news-card small" style="margin-top:18px">
+          <div class="tag">Education</div>
+          <h3>A developing story affecting American society</h3>
+          <div class="meta"><span>Source Name</span><span>•</span><span>Today</span></div>
+          <a class="read" href="#">Read more →</a>
+        </article>
+      </div>
+    </div>
+
+    <div class="news-layout">
+      <div>
+        <div class="filter" data-filter-group="social">
+          <button class="active" data-filter="all">All</button>
+          <button data-filter="culture">Culture</button>
+          <button data-filter="immigration">Immigration</button>
+          <button data-filter="education">Education</button>
+          <button data-filter="family">Family</button>
+          <button data-filter="race">Race &amp; Identity</button>
+          <button data-filter="gender">Gender</button>
+          <button data-filter="media">Media</button>
+        </div>
+        <div class="news-list">
+          <article class="news-item has-thumb" data-category="culture"><img class="news-thumb" src="social.png" alt=""><div><div class="tag">Culture</div><h3>Social culture story headline goes here</h3><p class="summary">Short factual summary of the latest development.</p><div class="meta"><span>Source Name</span><span>•</span><span>Today</span></div></div><a class="news-arrow" href="#">→</a></article>
+          <article class="news-item has-thumb" data-category="immigration"><img class="news-thumb" src="social.png" alt=""><div><div class="tag">Immigration</div><h3>Immigration-related story headline goes here</h3><p class="summary">Short factual summary with relevant context.</p><div class="meta"><span>Source Name</span><span>•</span><span>Today</span></div></div><a class="news-arrow" href="#">→</a></article>
+          <article class="news-item has-thumb" data-category="education"><img class="news-thumb" src="social.png" alt=""><div><div class="tag">Education</div><h3>Education and American society headline</h3><p class="summary">Short factual summary of the development.</p><div class="meta"><span>Source Name</span><span>•</span><span>Today</span></div></div><a class="news-arrow" href="#">→</a></article>
+          <article class="news-item has-thumb" data-category="family"><img class="news-thumb" src="social.png" alt=""><div><div class="tag">Family</div><h3>Family and relationships story headline</h3><p class="summary">Short factual summary of the development.</p><div class="meta"><span>Source Name</span><span>•</span><span>Today</span></div></div><a class="news-arrow" href="#">→</a></article>
+          <article class="news-item has-thumb" data-category="race"><img class="news-thumb" src="social.png" alt=""><div><div class="tag">Race &amp; Identity</div><h3>Race and identity story headline</h3><p class="summary">Short factual summary of the development.</p><div class="meta"><span>Source Name</span><span>•</span><span>Today</span></div></div><a class="news-arrow" href="#">→</a></article>
+          <article class="news-item has-thumb" data-category="gender"><img class="news-thumb" src="social.png" alt=""><div><div class="tag">Gender</div><h3>Gender and society story headline</h3><p class="summary">Short factual summary of the development.</p><div class="meta"><span>Source Name</span><span>•</span><span>Today</span></div></div><a class="news-arrow" href="#">→</a></article>
+          <article class="news-item has-thumb" data-category="media"><img class="news-thumb" src="social.png" alt=""><div><div class="tag">Media</div><h3>Social media and American society headline</h3><p class="summary">Short factual summary of the development.</p><div class="meta"><span>Source Name</span><span>•</span><span>Today</span></div></div><a class="news-arrow" href="#">→</a></article>
+        </div>
+      </div>
+      <aside class="sidebar">
+        <div class="side-card">
+          <h3>Trending</h3>
+          <ol class="trending">
+            <li>Current social issue being widely discussed</li>
+            <li>Another major American social story</li>
+            <li>Debate developing across the country</li>
+            <li>Story receiving national attention</li>
+            <li>Latest cultural development</li>
+          </ol>
+        </div>
+        <div class="side-card debate">
+          <div class="tag">The Debate</div>
+          <h3>The Question</h3>
+          <p class="debate-question">Should social media platforms have greater responsibility for content posted by users?</p>
+          <div class="perspectives">
+            <div class="perspective"><b>Perspective A</b>Add the strongest documented argument.</div>
+            <div class="perspective"><b>Perspective B</b>Add the strongest documented counterargument.</div>
+          </div>
+          <a class="read" href="#">Explore the debate →</a>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ECONOMIC ================= -->
+<section id="economic" class="section category-section">
+  <div class="inner">
+    <div class="section-head"><div><div class="eyebrow">American Economy</div><h2 class="section-title">Economic</h2><p class="section-subtitle">Money, business, work, markets, and economic debates shaping the United States.</p></div></div>
+    <div class="top-grid">
+      <article class="news-card featured"><div class="tag">Featured</div><h3>Headline for the most important economic story</h3><p class="summary">Add a concise factual summary and explain why the story matters.</p><div class="meta"><span>Source Name</span><span>•</span><span>Today</span></div><a class="read" href="#">Read more →</a></article>
+      <div><article class="news-card small"><div class="tag">Markets</div><h3>Major economic development</h3><div class="meta"><span>Source Name</span><span>•</span><span>Today</span></div></article><article class="news-card small" style="margin-top:18px"><div class="tag">Work</div><h3>Employment and workers story</h3><div class="meta"><span>Source Name</span><span>•</span><span>Today</span></div></article></div>
+    </div>
+    <div class="news-layout">
+      <div>
+        <div class="filter"><button class="active" data-filter="all">All</button><button data-filter="markets">Markets</button><button data-filter="jobs">Jobs</button><button data-filter="inflation">Inflation</button><button data-filter="business">Business</button><button data-filter="inequality">Inequality</button></div>
+        <div class="news-list">
+          <article class="news-item has-thumb" data-category="markets"><img class="news-thumb" src="economic.png" alt=""><div><div class="tag">Markets</div><h3>Markets and investing story headline</h3><p class="summary">Short factual summary of the development.</p><div class="meta"><span>Source Name</span><span>•</span><span>Today</span></div></div><a class="news-arrow" href="#">→</a></article>
+          <article class="news-item has-thumb" data-category="jobs"><img class="news-thumb" src="economic.png" alt=""><div><div class="tag">Jobs</div><h3>American workers and employment story</h3><p class="summary">Short factual summary of the development.</p><div class="meta"><span>Source Name</span><span>•</span><span>Today</span></div></div><a class="news-arrow" href="#">→</a></article>
+          <article class="news-item has-thumb" data-category="inflation"><img class="news-thumb" src="economic.png" alt=""><div><div class="tag">Inflation</div><h3>Prices and cost-of-living headline</h3><p class="summary">Short factual summary of the development.</p><div class="meta"><span>Source Name</span><span>•</span><span>Today</span></div></div><a class="news-arrow" href="#">→</a></article>
+          <article class="news-item has-thumb" data-category="business"><img class="news-thumb" src="economic.png" alt=""><div><div class="tag">Business</div><h3>Business and corporate economy story</h3><p class="summary">Short factual summary of the development.</p><div class="meta"><span>Source Name</span><span>•</span><span>Today</span></div></div><a class="news-arrow" href="#">→</a></article>
+          <article class="news-item has-thumb" data-category="inequality"><img class="news-thumb" src="economic.png" alt=""><div><div class="tag">Inequality</div><h3>Wealth and inequality debate</h3><p class="summary">Short factual summary of the development.</p><div class="meta"><span>Source Name</span><span>•</span><span>Today</span></div></div><a class="news-arrow" href="#">→</a></article>
+        </div>
+      </div>
+      <aside class="sidebar"><div class="side-card"><h3>Trending</h3><ol class="trending"><li>Major economic story</li><li>Business development</li><li>Jobs and wages debate</li><li>Market movement</li><li>Cost-of-living issue</li></ol></div><div class="side-card debate"><div class="tag">The Debate</div><h3>The Question</h3><p class="debate-question">What role should government play in the American economy?</p><div class="perspectives"><div class="perspective"><b>Perspective A</b>Documented argument.</div><div class="perspective"><b>Perspective B</b>Documented counterargument.</div></div></div></aside>
+    </div>
+  </div>
+</section>
+
+<!-- ================= POLITICAL ================= -->
+<section id="political" class="section white-section category-section">
+  <div class="inner">
+    <div class="section-head"><div><div class="eyebrow">American Politics</div><h2 class="section-title">Political</h2><p class="section-subtitle">Government, elections, policies, institutions, power, and political debates in the United States.</p></div></div>
+    <div class="top-grid">
+      <article class="news-card featured"><div class="tag">Featured</div><h3>Headline for the most important political story</h3><p class="summary">Add a neutral factual summary with the relevant date and source.</p><div class="meta"><span>Source Name</span><span>•</span><span>Today</span></div><a class="read" href="#">Read more →</a></article>
+      <div><article class="news-card small"><div class="tag">Government</div><h3>Major government development</h3><div class="meta"><span>Source Name</span><span>•</span><span>Today</span></div></article><article class="news-card small" style="margin-top:18px"><div class="tag">Elections</div><h3>Election-related development</h3><div class="meta"><span>Source Name</span><span>•</span><span>Today</span></div></article></div>
+    </div>
+    <div class="news-layout">
+      <div>
+        <div class="filter"><button class="active" data-filter="all">All</button><button data-filter="government">Government</button><button data-filter="elections">Elections</button><button data-filter="policy">Policy</button><button data-filter="courts">Courts</button><button data-filter="congress">Congress</button></div>
+        <div class="news-list">
+          <article class="news-item has-thumb" data-category="government"><img class="news-thumb" src="political.png" alt=""><div><div class="tag">Government</div><h3>Government and administration headline</h3><p class="summary">Short factual summary of the development.</p><div class="meta"><span>Source Name</span><span>•</span><span>Today</span></div></div><a class="news-arrow" href="#">→</a></article>
+          <article class="news-item has-thumb" data-category="elections"><img class="news-thumb" src="political.png" alt=""><div><div class="tag">Elections</div><h3>Election and campaign story</h3><p class="summary">Short factual summary of the development.</p><div class="meta"><span>Source Name</span><span>•</span><span>Today</span></div></div><a class="news-arrow" href="#">→</a></article>
+          <article class="news-item has-thumb" data-category="policy"><img class="news-thumb" src="political.png" alt=""><div><div class="tag">Policy</div><h3>Major policy development</h3><p class="summary">Short factual summary of the development.</p><div class="meta"><span>Source Name</span><span>•</span><span>Today</span></div></div><a class="news-arrow" href="#">→</a></article>
+          <article class="news-item has-thumb" data-category="courts"><img class="news-thumb" src="political.png" alt=""><div><div class="tag">Courts</div><h3>Legal and Supreme Court headline</h3><p class="summary">Short factual summary of the development.</p><div class="meta"><span>Source Name</span><span>•</span><span>Today</span></div></div><a class="news-arrow" href="#">→</a></article>
+          <article class="news-item has-thumb" data-category="congress"><img class="news-thumb" src="political.png" alt=""><div><div class="tag">Congress</div><h3>Congressional development</h3><p class="summary">Short factual summary of the development.</p><div class="meta"><span>Source Name</span><span>•</span><span>Today</span></div></div><a class="news-arrow" href="#">→</a></article>
+        </div>
+      </div>
+      <aside class="sidebar"><div class="side-card"><h3>Trending</h3><ol class="trending"><li>Top political story</li><li>Major policy debate</li><li>Congressional development</li><li>Court decision</li><li>Election story</li></ol></div><div class="side-card debate"><div class="tag">The Debate</div><h3>The Question</h3><p class="debate-question">How should Americans evaluate competing political arguments?</p><div class="perspectives"><div class="perspective"><b>Perspective A</b>Documented argument.</div><div class="perspective"><b>Perspective B</b>Documented counterargument.</div></div></div></aside>
+    </div>
+  </div>
+</section>
+
+<!-- ================= AI ================= -->
+<section id="ai" class="section category-section">
+  <div class="inner">
+    <div class="section-head"><div><div class="eyebrow">Technology &amp; Artificial Intelligence</div><h2 class="section-title">AI &amp; Technology</h2><p class="section-subtitle">Artificial intelligence, automation, privacy, technology companies, and the future.</p></div></div>
+    <div class="top-grid">
+      <article class="news-card featured"><div class="tag">Featured</div><h3>Headline for the most important AI story</h3><p class="summary">Add a concise factual summary of the latest technology development.</p><div class="meta"><span>Source Name</span><span>•</span><span>Today</span></div><a class="read" href="#">Read more →</a></article>
+      <div><article class="news-card small"><div class="tag">AI</div><h3>Artificial intelligence development</h3><div class="meta"><span>Source Name</span><span>•</span><span>Today</span></div></article><article class="news-card small" style="margin-top:18px"><div class="tag">Technology</div><h3>Major technology company story</h3><div class="meta"><span>Source Name</span><span>•</span><span>Today</span></div></article></div>
+    </div>
+    <div class="news-layout">
+      <div>
+        <div class="filter"><button class="active" data-filter="all">All</button><button data-filter="ai">AI</button><button data-filter="privacy">Privacy</button><button data-filter="jobs">Jobs</button><button data-filter="regulation">Regulation</button><button data-filter="companies">Companies</button></div>
+        <div class="news-list">
+          <article class="news-item has-thumb" data-category="ai"><img class="news-thumb" src="ai.png" alt=""><div><div class="tag">AI</div><h3>Artificial intelligence headline</h3><p class="summary">Short factual summary of the development.</p><div class="meta"><span>Source Name</span><span>•</span><span>Today</span></div></div><a class="news-arrow" href="#">→</a></article>
+          <article class="news-item has-thumb" data-category="privacy"><img class="news-thumb" src="ai.png" alt=""><div><div class="tag">Privacy</div><h3>Privacy and data story</h3><p class="summary">Short factual summary of the development.</p><div class="meta"><span>Source Name</span><span>•</span><span>Today</span></div></div><a class="news-arrow" href="#">→</a></article>
+          <article class="news-item has-thumb" data-category="jobs"><img class="news-thumb" src="ai.png" alt=""><div><div class="tag">Jobs</div><h3>AI and the future of work</h3><p class="summary">Short factual summary of the development.</p><div class="meta"><span>Source Name</span><span>•</span><span>Today</span></div></div><a class="news-arrow" href="#">→</a></article>
+          <article class="news-item has-thumb" data-category="regulation"><img class="news-thumb" src="ai.png" alt=""><div><div class="tag">Regulation</div><h3>AI regulation and government headline</h3><p class="summary">Short factual summary of the development.</p><div class="meta"><span>Source Name</span><span>•</span><span>Today</span></div></div><a class="news-arrow" href="#">→</a></article>
+          <article class="news-item has-thumb" data-category="companies"><img class="news-thumb" src="ai.png" alt=""><div><div class="tag">Companies</div><h3>Technology company development</h3><p class="summary">Short factual summary of the development.</p><div class="meta"><span>Source Name</span><span>•</span><span>Today</span></div></div><a class="news-arrow" href="#">→</a></article>
+        </div>
+      </div>
+      <aside class="sidebar"><div class="side-card"><h3>Trending</h3><ol class="trending"><li>Major AI development</li><li>AI regulation debate</li><li>Technology company story</li><li>AI and employment</li><li>Privacy issue</li></ol></div><div class="side-card debate"><div class="tag">The Debate</div><h3>The Question</h3><p class="debate-question">How much should governments regulate artificial intelligence?</p><div class="perspectives"><div class="perspective"><b>Perspective A</b>Documented argument.</div><div class="perspective"><b>Perspective B</b>Documented counterargument.</div></div></div></aside>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FASHION ================= -->
+<section id="fashion" class="section white-section category-section">
+  <div class="inner">
+    <div class="section-head"><div><div class="eyebrow">Fashion &amp; Culture</div><h2 class="section-title">Fashion</h2><p class="section-subtitle">Trends, identity, beauty, consumerism, sustainability, and culture surrounding fashion.</p></div></div>
+    <div class="top-grid">
+      <article class="news-card featured"><div class="tag">Featured</div><h3>Headline for the most important fashion story</h3><p class="summary">Add a concise factual summary of the latest fashion and culture development.</p><div class="meta"><span>Source Name</span><span>•</span><span>Today</span></div><a class="read" href="#">Read more →</a></article>
+      <div><article class="news-card small"><div class="tag">Culture</div><h3>Fashion and culture development</h3><div class="meta"><span>Source Name</span><span>•</span><span>Today</span></div></article><article class="news-card small" style="margin-top:18px"><div class="tag">Industry</div><h3>Fashion industry story</h3><div class="meta"><span>Source Name</span><span>•</span><span>Today</span></div></article></div>
+    </div>
+    <div class="news-layout">
+      <div>
+        <div class="filter"><button class="active" data-filter="all">All</button><button data-filter="trends">Trends</button><button data-filter="culture">Culture</button><button data-filter="beauty">Beauty</button><button data-filter="sustainability">Sustainability</button><button data-filter="industry">Industry</button></div>
+        <div class="news-list">
+          <article class="news-item has-thumb" data-category="trends"><img class="news-thumb" src="fashion.png" alt=""><div><div class="tag">Trends</div><h3>Fashion trend headline</h3><p class="summary">Short factual summary of the development.</p><div class="meta"><span>Source Name</span><span>•</span><span>Today</span></div></div><a class="news-arrow" href="#">→</a></article>
+          <article class="news-item has-thumb" data-category="culture"><img class="news-thumb" src="fashion.png" alt=""><div><div class="tag">Culture</div><h3>Fashion, identity and culture story</h3><p class="summary">Short factual summary of the development.</p><div class="meta"><span>Source Name</span><span>•</span><span>Today</span></div></div><a class="news-arrow" href="#">→</a></article>
+          <article class="news-item has-thumb" data-category="beauty"><img class="news-thumb" src="fashion.png" alt=""><div><div class="tag">Beauty</div><h3>Beauty standards and fashion headline</h3><p class="summary">Short factual summary of the development.</p><div class="meta"><span>Source Name</span><span>•</span><span>Today</span></div></div><a class="news-arrow" href="#">→</a></article>
+          <article class="news-item has-thumb" data-category="sustainability"><img class="news-thumb" src="fashion.png" alt=""><div><div class="tag">Sustainability</div><h3>Fast fashion and sustainability story</h3><p class="summary">Short factual summary of the development.</p><div class="meta"><span>Source Name</span><span>•</span><span>Today</span></div></div><a class="news-arrow" href="#">→</a></article>
+          <article class="news-item has-thumb" data-category="industry"><img class="news-thumb" src="fashion.png" alt=""><div><div class="tag">Industry</div><h3>Fashion industry development</h3><p class="summary">Short factual summary of the development.</p><div class="meta"><span>Source Name</span><span>•</span><span>Today</span></div></div><a class="news-arrow" href="#">→</a></article>
+        </div>
+      </div>
+      <aside class="sidebar"><div class="side-card"><h3>Trending</h3><ol class="trending"><li>Fashion industry story</li><li>Major cultural trend</li><li>Beauty standards debate</li><li>Sustainability issue</li><li>Designer or brand development</li></ol></div><div class="side-card debate"><div class="tag">The Debate</div><h3>The Question</h3><p class="debate-question">Can fashion remain sustainable while continuing to grow as an industry?</p><div class="perspectives"><div class="perspective"><b>Perspective A</b>Documented argument.</div><div class="perspective"><b>Perspective B</b>Documented counterargument.</div></div></div></aside>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div class="logo">The Divide</div>
+    <p>Different perspectives. Better conversations.</p>
+  </div>
+</footer>
+
+<script>
+document.querySelectorAll(".filter").forEach(group => {
+  const buttons = group.querySelectorAll("button");
+  const list = group.parentElement.querySelector(".news-list");
+  if (!list) return;
+
+  const items = list.querySelectorAll(".news-item");
+
+  buttons.forEach(button => {
+    button.addEventListener("click", () => {
+      buttons.forEach(b => b.classList.remove("active"));
+      button.classList.add("active");
+      const selected = button.dataset.filter;
+
+      items.forEach(item => {
+        item.classList.toggle(
+          "hidden",
+          selected !== "all" && item.dataset.category !== selected
+        );
+      });
+    });
+  });
+});
+</script>
+
+</body>
+</html>
